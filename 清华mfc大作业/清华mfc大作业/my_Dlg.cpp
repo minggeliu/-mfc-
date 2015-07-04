@@ -16,6 +16,7 @@ my_Dlg::my_Dlg(CWnd* pParent /*=NULL*/)
 	, my_edit1(_T(""))
 	, my_weight(0.01)
 	, my_speed(1)
+	, my_degree(45)
 {
 
 }
@@ -30,6 +31,7 @@ void my_Dlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT1, my_edit1);
 	DDX_Control(pDX, IDC_COMBO1, m_combo);
 	DDX_Control(pDX, IDC_RADIO1, m_speed1);
+	DDX_Text(pDX, IDC_EDIT2, my_degree);
 }
 
 
@@ -55,6 +57,8 @@ BOOL my_Dlg::OnInitDialog()
 	m_combo.SetCurSel(0);
 
 	m_speed1.SetCheck(1);
+
+	UpdateData(false);		//显示抛射角度数
 
 	ShowDetail();
 
@@ -84,7 +88,7 @@ void my_Dlg::OnCbnSelchangeCombo1()
 // 显示各参数
 void my_Dlg::ShowDetail()
 {
-	my_edit1.Format(L"质量:%.2fkg\t速度:%.2fm/s",my_weight,my_speed);
+	my_edit1.Format(L"质量:%.2fkg\t速度:%.2fm/s\t抛射角:%.2f°",my_weight,my_speed,my_degree);
 	UpdateData(false);
 }
 
