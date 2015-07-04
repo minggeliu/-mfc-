@@ -34,4 +34,5 @@ public:
 	afx_msg void OnBnClickedRadio2();
 	afx_msg void OnBnClickedRadio3();
 	double my_degree;
+	afx_msg void OnEnChangeEdit2();
 };

@@ -220,6 +220,7 @@ BEGIN
     EDITTEXT        IDC_EDIT2,192,17,40,14,ES_AUTOHSCROLL
     LTEXT           "Å×Éä½Ç:",IDC_STATIC,192,7,28,8
     LTEXT           "¡ã",IDC_STATIC,233,16,8,8
+    LTEXT           "¸ß¶È:",IDC_STATIC,259,7,20,8
 END
 
 

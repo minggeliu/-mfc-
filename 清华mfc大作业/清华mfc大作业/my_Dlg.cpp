@@ -40,6 +40,7 @@ BEGIN_MESSAGE_MAP(my_Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RADIO1, &my_Dlg::OnBnClickedRadio1)
 	ON_BN_CLICKED(IDC_RADIO2, &my_Dlg::OnBnClickedRadio2)
 	ON_BN_CLICKED(IDC_RADIO3, &my_Dlg::OnBnClickedRadio3)
+	ON_EN_CHANGE(IDC_EDIT2, &my_Dlg::OnEnChangeEdit2)
 END_MESSAGE_MAP()
 
 
@@ -113,5 +114,21 @@ void my_Dlg::OnBnClickedRadio3()
 {
 	// TODO:  在此添加控件通知处理程序代码
 	my_speed = 3;
+	ShowDetail();
+}
+
+
+void my_Dlg::OnEnChangeEdit2()
+{
+	// TODO:  如果该控件是 RICHEDIT 控件，它将不
+	// 发送此通知，除非重写 CDialogEx::OnInitDialog()
+	// 函数并调用 CRichEditCtrl().SetEventMask()，
+	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
+
+	// TODO:  在此添加控件通知处理程序代码
+	UpdateData(true);
+	if (my_degree > 90) my_degree = 90;
+	else if (my_degree < 0) my_degree = 0;
+	UpdateData(false);
 	ShowDetail();
 }
