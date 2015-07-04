@@ -35,4 +35,7 @@ public:
 	afx_msg void OnBnClickedRadio3();
 	double my_degree;
 	afx_msg void OnEnChangeEdit2();
+	CScrollBar m_hscrollbar;
+	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
+	double my_height;
 };

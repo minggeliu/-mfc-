@@ -17,6 +17,7 @@ my_Dlg::my_Dlg(CWnd* pParent /*=NULL*/)
 	, my_weight(0.01)
 	, my_speed(1)
 	, my_degree(45)
+	, my_height(0)
 {
 
 }
@@ -32,6 +33,7 @@ void my_Dlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_COMBO1, m_combo);
 	DDX_Control(pDX, IDC_RADIO1, m_speed1);
 	DDX_Text(pDX, IDC_EDIT2, my_degree);
+	DDX_Control(pDX, IDC_SCROLLBAR2, m_hscrollbar);
 }
 
 
@@ -41,6 +43,7 @@ BEGIN_MESSAGE_MAP(my_Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RADIO2, &my_Dlg::OnBnClickedRadio2)
 	ON_BN_CLICKED(IDC_RADIO3, &my_Dlg::OnBnClickedRadio3)
 	ON_EN_CHANGE(IDC_EDIT2, &my_Dlg::OnEnChangeEdit2)
+	ON_WM_HSCROLL()
 END_MESSAGE_MAP()
 
 
@@ -60,6 +63,10 @@ BOOL my_Dlg::OnInitDialog()
 	m_speed1.SetCheck(1);
 
 	UpdateData(false);		//显示抛射角度数
+
+	m_hscrollbar.SetScrollRange(0, 500);
+	m_hscrollbar.SetScrollPos(0);
+	my_height = 0;
 
 	ShowDetail();
 
@@ -89,7 +96,7 @@ void my_Dlg::OnCbnSelchangeCombo1()
 // 显示各参数
 void my_Dlg::ShowDetail()
 {
-	my_edit1.Format(L"质量:%.2fkg\t速度:%.2fm/s\t抛射角:%.2f°",my_weight,my_speed,my_degree);
+	my_edit1.Format(L"质量:%.2fkg\t\t速度:%.2fm/s\t\t抛射角:%.2f°\t\t高度:%.2fm",my_weight,my_speed,my_degree,my_height);
 	UpdateData(false);
 }
 
@@ -131,4 +138,52 @@ void my_Dlg::OnEnChangeEdit2()
 	else if (my_degree < 0) my_degree = 0;
 	UpdateData(false);
 	ShowDetail();
+}
+
+
+void my_Dlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
+{
+	// TODO:  在此添加消息处理程序代码和/或调用默认值
+	int iNowPos;
+	switch (nSBCode)
+	{
+		if (pScrollBar == &m_hscrollbar) {
+			case SB_THUMBTRACK:
+				m_hscrollbar.SetScrollPos(nPos);
+				my_height = nPos * 1.00 / 100;
+				ShowDetail();break;
+			case SB_LINERIGHT:
+				iNowPos = m_hscrollbar.GetScrollPos();
+				iNowPos++;
+				if (iNowPos > 500) iNowPos = 500;
+				m_hscrollbar.SetScrollPos(iNowPos);
+				my_height = iNowPos * 1.00 / 100;
+				ShowDetail();break;
+			case SB_LINELEFT:
+				iNowPos = m_hscrollbar.GetScrollPos();
+				iNowPos--;
+				if (iNowPos < 0) iNowPos = 0;
+				m_hscrollbar.SetScrollPos(iNowPos);
+				my_height = iNowPos * 1.00 / 100;
+				ShowDetail();break;
+			case SB_PAGERIGHT:
+				iNowPos = m_hscrollbar.GetScrollPos();
+				iNowPos += 10;
+				if (iNowPos > 500) iNowPos = 500;
+				m_hscrollbar.SetScrollPos(iNowPos);
+				my_height = iNowPos * 1.00 / 100;
+				ShowDetail();break;
+			case SB_PAGELEFT:
+				iNowPos = m_hscrollbar.GetScrollPos();
+				iNowPos -= 10;
+				if (iNowPos < 0) iNowPos = 0;
+				m_hscrollbar.SetScrollPos(iNowPos);
+				my_height = iNowPos * 1.00 / 100;
+				ShowDetail();break;
+		}
+	default:
+		break;
+	}
+
+	CDialogEx::OnHScroll(nSBCode, nPos, pScrollBar);
 }
