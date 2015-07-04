@@ -13,6 +13,8 @@
 #include "清华mfc大作业Doc.h"
 #include "清华mfc大作业View.h"
 
+#include "my_Dlg.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -27,6 +29,7 @@ BEGIN_MESSAGE_MAP(C清华mfc大作业View, CRecordView)
 	ON_COMMAND(ID_FILE_PRINT, &CRecordView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CRecordView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CRecordView::OnFilePrintPreview)
+	ON_COMMAND(ID_OpenExp, &C清华mfc大作业View::OnOpenexp)
 END_MESSAGE_MAP()
 
 // C清华mfc大作业View 构造/析构
@@ -117,3 +120,9 @@ CRecordset* C清华mfc大作业View::OnGetRecordset()
 
 
 // C清华mfc大作业View 消息处理程序
+void C清华mfc大作业View::OnOpenexp()
+{
+	// TODO:  在此添加命令处理程序代码
+	my_Dlg m_Dlg1;
+	m_Dlg1.DoModal();
+}

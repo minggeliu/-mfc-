@@ -47,6 +47,8 @@ protected:
 // 生成的消息映射函数
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnOpenexp();
 };
 
 #ifndef _DEBUG  // 清华mfc大作业View.cpp 中的调试版本
