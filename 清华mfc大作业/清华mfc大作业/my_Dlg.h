@@ -23,4 +23,14 @@ public:
 	CString my_edit1;
 	CComboBox m_combo;
 	virtual BOOL OnInitDialog();
+	afx_msg void OnCbnSelchangeCombo1();
+	double my_weight;
+	// 显示各参数
+	void ShowDetail();
+	double my_speed;
+	// 第一个速度单选按钮控件
+	CButton m_speed1;
+	afx_msg void OnBnClickedRadio1();
+	afx_msg void OnBnClickedRadio2();
+	afx_msg void OnBnClickedRadio3();
 };
