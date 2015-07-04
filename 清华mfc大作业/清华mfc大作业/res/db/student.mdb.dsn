@@ -9,5 +9,5 @@ MaxScanRows=8
 MaxBufferSize=2048
 FIL=MS Access
 DriverId=25
-DefaultDir=C:\Users\Administrator\Desktop
-DBQ=C:\Users\Administrator\Desktop\student.mdb
+DefaultDir=res\db
+DBQ=res\db\student.mdb

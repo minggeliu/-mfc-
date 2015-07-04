@@ -18,6 +18,7 @@ my_Dlg::my_Dlg(CWnd* pParent /*=NULL*/)
 	, my_speed(1)
 	, my_degree(45)
 	, my_height(0)
+	, my_color("red")
 {
 
 }
@@ -34,6 +35,7 @@ void my_Dlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_RADIO1, m_speed1);
 	DDX_Text(pDX, IDC_EDIT2, my_degree);
 	DDX_Control(pDX, IDC_SCROLLBAR2, m_hscrollbar);
+	DDX_Control(pDX, IDC_RADIO4, m_colorred);
 }
 
 
@@ -44,6 +46,9 @@ BEGIN_MESSAGE_MAP(my_Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RADIO3, &my_Dlg::OnBnClickedRadio3)
 	ON_EN_CHANGE(IDC_EDIT2, &my_Dlg::OnEnChangeEdit2)
 	ON_WM_HSCROLL()
+	ON_BN_CLICKED(IDC_RADIO4, &my_Dlg::OnBnClickedRadio4)
+	ON_BN_CLICKED(IDC_RADIO5, &my_Dlg::OnBnClickedRadio5)
+	ON_BN_CLICKED(IDC_RADIO6, &my_Dlg::OnBnClickedRadio6)
 END_MESSAGE_MAP()
 
 
@@ -60,13 +65,15 @@ BOOL my_Dlg::OnInitDialog()
 	m_combo.AddString(L"1kg");
 	m_combo.SetCurSel(0);
 
-	m_speed1.SetCheck(1);
+	m_speed1.SetCheck(1);	//速度1m/s
 
 	UpdateData(false);		//显示抛射角度数
 
 	m_hscrollbar.SetScrollRange(0, 500);
 	m_hscrollbar.SetScrollPos(0);
 	my_height = 0;
+
+	m_colorred.SetCheck(1);	//颜色红色
 
 	ShowDetail();
 
@@ -96,7 +103,7 @@ void my_Dlg::OnCbnSelchangeCombo1()
 // 显示各参数
 void my_Dlg::ShowDetail()
 {
-	my_edit1.Format(L"质量:%.2fkg\t\t速度:%.2fm/s\t\t抛射角:%.2f°\t\t高度:%.2fm",my_weight,my_speed,my_degree,my_height);
+	my_edit1.Format(L"质量:%.2fkg\t  速度:%.2fm/s\t  抛射角:%.2f°\t  高度:%.2fm\t  颜色:%s",my_weight,my_speed,my_degree,my_height,my_color);
 	UpdateData(false);
 }
 
@@ -186,4 +193,28 @@ void my_Dlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 	}
 
 	CDialogEx::OnHScroll(nSBCode, nPos, pScrollBar);
+}
+
+
+void my_Dlg::OnBnClickedRadio4()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	my_color = "red";
+	ShowDetail();
+}
+
+
+void my_Dlg::OnBnClickedRadio5()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	my_color = "green";
+	ShowDetail();
+}
+
+
+void my_Dlg::OnBnClickedRadio6()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	my_color = "blue";
+	ShowDetail();
 }

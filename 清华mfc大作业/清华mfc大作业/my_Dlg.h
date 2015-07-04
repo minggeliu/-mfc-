@@ -1,6 +1,14 @@
 #pragma once
 #include "afxwin.h"
 
+class EXPERMENT {
+public:
+	double speed;
+	double degree;
+	double height;
+	CString color;
+	double t;
+};
 
 // my_Dlg ¶Ô»°¿ò
 
@@ -38,4 +46,9 @@ public:
 	CScrollBar m_hscrollbar;
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);
 	double my_height;
+	CButton m_colorred;
+	CString my_color;
+	afx_msg void OnBnClickedRadio4();
+	afx_msg void OnBnClickedRadio5();
+	afx_msg void OnBnClickedRadio6();
 };
