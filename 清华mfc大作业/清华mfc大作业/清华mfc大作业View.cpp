@@ -15,6 +15,7 @@
 
 #include "my_Dlg.h"
 #include "DBDlg.h"
+#include "MediaDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,7 +33,8 @@ BEGIN_MESSAGE_MAP(C清华mfc大作业View, CRecordView)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CRecordView::OnFilePrintPreview)
 	ON_COMMAND(ID_OpenExp, &C清华mfc大作业View::OnOpenexp)
 	ON_COMMAND(ID_32773, &C清华mfc大作业View::OnOpenSortAndSerach)
-	ON_BN_CLICKED(IDSort, &C清华mfc大作业View::OnBnClickedSort)
+	//ON_BN_CLICKED(IDSort, &C清华mfc大作业View::OnBnClickedSort)
+	ON_COMMAND(ID_32774, &C清华mfc大作业View::OnOpenMediaDlg)
 END_MESSAGE_MAP()
 
 // C清华mfc大作业View 构造/析构
@@ -173,4 +175,12 @@ void C清华mfc大作业View::OnBnClickedSort()
 {
 	// TODO:  在此添加控件通知处理程序代码
 		
+}
+
+
+void C清华mfc大作业View::OnOpenMediaDlg()
+{
+	// TODO:  在此添加命令处理程序代码
+	MediaDlg m_MediaDlg;
+	m_MediaDlg.DoModal();
 }

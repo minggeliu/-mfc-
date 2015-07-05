@@ -286,8 +286,11 @@ void my_Dlg::OnBnClickedOk()
 			break;
 		}
 		else { 
+			
 			InvalidateRect(rect); 
+			OnPaint();
 			experiment[experiment.size() - 1].t += 0.001; 
+			Sleep(5);
 		}
 		
 	}

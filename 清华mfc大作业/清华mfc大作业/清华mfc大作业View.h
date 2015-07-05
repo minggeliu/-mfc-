@@ -51,6 +51,7 @@ public:
 	afx_msg void OnOpenexp();
 	afx_msg void OnOpenSortAndSerach();
 	afx_msg void OnBnClickedSort();
+	afx_msg void OnOpenMediaDlg();
 };
 
 #ifndef _DEBUG  // 清华mfc大作业View.cpp 中的调试版本

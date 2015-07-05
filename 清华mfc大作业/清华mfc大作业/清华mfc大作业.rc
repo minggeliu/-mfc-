@@ -154,6 +154,7 @@ BEGIN
     END
     MENUITEM "抛物线实验",                       ID_OpenExp
     MENUITEM "排序与查找",                       ID_32773
+    MENUITEM "播放",                          ID_32774
 END
 
 
@@ -253,6 +254,15 @@ BEGIN
     EDITTEXT        IDC_EDIT1,185,46,91,14,ES_AUTOHSCROLL
 END
 
+IDD_DIALOG3 DIALOGEX 0, 0, 309, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,198,156,50,14
+    PUSHBUTTON      "取消",IDCANCEL,252,156,50,14
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -332,6 +342,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 170
     END
+
+    IDD_DIALOG3, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -352,6 +370,11 @@ BEGIN
 END
 
 IDD_DIALOG2 AFX_DIALOG_LAYOUT
+BEGIN
+    0x0000
+END
+
+IDD_DIALOG3 AFX_DIALOG_LAYOUT
 BEGIN
     0x0000
 END

@@ -107,6 +107,7 @@
   <ItemGroup>
     <ClInclude Include="DBDlg.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MediaDlg.h" />
     <ClInclude Include="my_Dlg.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -119,6 +120,7 @@
   <ItemGroup>
     <ClCompile Include="DBDlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MediaDlg.cpp" />
     <ClCompile Include="my_Dlg.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
