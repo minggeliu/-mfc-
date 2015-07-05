@@ -24,6 +24,7 @@ MediaDlg::~MediaDlg()
 void MediaDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_OCX1, m_mediaPlay);
 }
 
 
@@ -32,3 +33,15 @@ END_MESSAGE_MAP()
 
 
 // MediaDlg 消息处理程序
+
+
+BOOL MediaDlg::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	// TODO:  在此添加额外的初始化
+	m_mediaPlay.put_URL(L"res/录像4.avi");
+
+	return TRUE;  // return TRUE unless you set the focus to a control
+				  // 异常:  OCX 属性页应返回 FALSE
+}

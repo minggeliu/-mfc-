@@ -11,6 +11,7 @@
 #include "清华mfc大作业Set.h"
 #include "清华mfc大作业Doc.h"
 #include "清华mfc大作业View.h"
+#include "CWMPPlayer4.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

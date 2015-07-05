@@ -105,6 +105,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CWMPPlayer4.h" />
     <ClInclude Include="DBDlg.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MediaDlg.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="清华mfc大作业View.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CWMPPlayer4.cpp" />
     <ClCompile Include="DBDlg.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MediaDlg.cpp" />
@@ -148,7 +150,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties RESOURCE_FILE="清华mfc大作业.rc" />
+      <UserProperties _x007B_6BF52A52-394A-11D3-B153-00C04F79FAA6_x007D_="CWMPPlayer4" RESOURCE_FILE="清华mfc大作业.rc" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

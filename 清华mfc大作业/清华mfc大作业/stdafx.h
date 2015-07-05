@@ -40,6 +40,7 @@
 
 
 #include <afxdb.h>        // ODBC
+#include <afxdisp.h>
 
 
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "CWMPPlayer4.h"
 
 // MediaDlg 对话框
 
@@ -18,4 +19,7 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CWMPPlayer4 m_mediaPlay;
+	virtual BOOL OnInitDialog();
 };

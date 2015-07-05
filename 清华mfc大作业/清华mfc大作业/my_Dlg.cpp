@@ -289,7 +289,7 @@ void my_Dlg::OnBnClickedOk()
 			
 			InvalidateRect(rect); 
 			OnPaint();
-			experiment[experiment.size() - 1].t += 0.001; 
+			experiment[experiment.size() - 1].t += 0.01; 
 			Sleep(5);
 		}
 		
