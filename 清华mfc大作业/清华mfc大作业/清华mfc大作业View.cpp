@@ -142,8 +142,10 @@ void C清华mfc大作业View::OnOpenSortAndSerach()
 	// TODO:  在此添加命令处理程序代码
 	DBDlg m_DBDlg;
 	if (m_DBDlg.DoModal() == IDOK) {		//IDOK键在此处是排序按钮
+		CString string;
+		string.Format(L"%s desc", m_DBDlg.my_string);	//从大到小排序
 		m_pSet->Close();
-		m_pSet->m_strSort = m_DBDlg.my_string;
+		m_pSet->m_strSort = string;
 		m_pSet->Open();
 		UpdateData(false);
 	}
