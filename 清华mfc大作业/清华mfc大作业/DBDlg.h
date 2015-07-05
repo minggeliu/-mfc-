@@ -26,4 +26,7 @@ public:
 	CString my_string;
 	afx_msg void OnCbnSelchangeCombo1();
 	afx_msg void OnBnClickedSort();
+	CString my_keyword;
+	afx_msg void OnEnChangeEdit1();
+	CString my_string2;
 };

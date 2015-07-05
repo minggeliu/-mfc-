@@ -209,8 +209,8 @@ BEGIN
     EDITTEXT        IDC_EDIT6,196,119,78,14,ES_AUTOHSCROLL
     LTEXT           "ID:",IDC_STATIC,46,68,14,9
     LTEXT           "姓名:",IDC_STATIC,174,67,18,9
-    LTEXT           "性别:",IDC_STATIC,46,95,19,9
-    LTEXT           "年龄:",IDC_STATIC,174,95,18,9
+    LTEXT           "年龄:",IDC_STATIC,46,95,19,9
+    LTEXT           "性别:",IDC_STATIC,174,95,18,9
     LTEXT           "学院:",IDC_STATIC,46,122,18,9
     LTEXT           "学费:",IDC_STATIC,174,123,18,9
 END
@@ -246,9 +246,11 @@ CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "排序",IDOK,40,82,50,14
-    PUSHBUTTON      "取消",IDCANCEL,252,156,50,14
-    COMBOBOX        IDC_COMBO1,23,47,88,15,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "选择一个字段进行排序:",IDC_STATIC,23,31,87,11
+    PUSHBUTTON      "查找",IDCANCEL,207,81,50,14
+    COMBOBOX        IDC_COMBO1,23,48,88,15,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "请选择一个字段:",IDC_STATIC,23,31,87,11
+    LTEXT           "请输入要查询的关键字(在左侧所选的字段中查找):",IDC_STATIC,182,26,91,16
+    EDITTEXT        IDC_EDIT1,185,46,91,14,ES_AUTOHSCROLL
 END
 
 

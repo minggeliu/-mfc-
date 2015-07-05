@@ -141,12 +141,28 @@ void C清华mfc大作业View::OnOpenSortAndSerach()
 {
 	// TODO:  在此添加命令处理程序代码
 	DBDlg m_DBDlg;
-	if (m_DBDlg.DoModal() == IDOK) {		//IDOK键在此处是排序按钮
+	int result = m_DBDlg.DoModal();
+	if (result == IDOK) {		//IDOK键在此处是排序按钮
 		CString string;
 		string.Format(L"%s desc", m_DBDlg.my_string);	//从大到小排序
 		m_pSet->Close();
 		m_pSet->m_strSort = string;
 		m_pSet->Open();
+		UpdateData(false);
+	}
+	else if (result == IDCANCEL) {		//IDCANCEL键在此处时查找按钮
+		CString str;
+		str.Format(L"select * from 表1 where %s=%s", m_DBDlg.my_string, m_DBDlg.my_keyword);//关键在于void DBDlg::OnEnChangeEdit1(){UpdateData(true);}
+		m_pSet->Close();
+		//m_pSet->m_strFilter = str;
+		m_pSet->Open(0,str,0);
+		int SearchCount = m_pSet->GetRecordCount();
+		if (SearchCount == 0) {
+			MessageBox(L"没有查询到相应的记录!");
+			m_pSet->Close();
+			//m_pSet->m_strFilter;
+			m_pSet->Open(0, L"select * from 表1",0);
+		}
 		UpdateData(false);
 	}
 	
