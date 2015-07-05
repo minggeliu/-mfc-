@@ -153,6 +153,7 @@ BEGIN
         MENUITEM "关于 清华mfc大作业(&A)...",          ID_APP_ABOUT
     END
     MENUITEM "抛物线实验",                       ID_OpenExp
+    MENUITEM "排序与查找",                       ID_32773
 END
 
 
@@ -239,6 +240,17 @@ BEGIN
     CONTROL         "蓝色",IDC_RADIO6,"Button",BS_AUTORADIOBUTTON,378,17,27,10
 END
 
+IDD_DIALOG2 DIALOGEX 0, 0, 309, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "排序",IDOK,40,82,50,14
+    PUSHBUTTON      "取消",IDCANCEL,252,156,50,14
+    COMBOBOX        IDC_COMBO1,23,47,88,15,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "选择一个字段进行排序:",IDC_STATIC,23,31,87,11
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -310,6 +322,14 @@ BEGIN
         TOPMARGIN, 7
         BOTTOMMARGIN, 271
     END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -325,6 +345,11 @@ BEGIN
 END
 
 IDD_MFC_FORM AFX_DIALOG_LAYOUT
+BEGIN
+    0x0000
+END
+
+IDD_DIALOG2 AFX_DIALOG_LAYOUT
 BEGIN
     0x0000
 END

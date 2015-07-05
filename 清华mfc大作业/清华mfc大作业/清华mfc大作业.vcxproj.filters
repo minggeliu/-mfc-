@@ -45,6 +45,9 @@
     <ClInclude Include="my_Dlg.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="DBDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="清华mfc大作业.cpp">
@@ -66,6 +69,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="my_Dlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DBDlg.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

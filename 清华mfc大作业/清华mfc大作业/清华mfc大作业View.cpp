@@ -14,6 +14,7 @@
 #include "清华mfc大作业View.h"
 
 #include "my_Dlg.h"
+#include "DBDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,6 +31,8 @@ BEGIN_MESSAGE_MAP(C清华mfc大作业View, CRecordView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CRecordView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CRecordView::OnFilePrintPreview)
 	ON_COMMAND(ID_OpenExp, &C清华mfc大作业View::OnOpenexp)
+	ON_COMMAND(ID_32773, &C清华mfc大作业View::OnOpenSortAndSerach)
+	ON_BN_CLICKED(IDSort, &C清华mfc大作业View::OnBnClickedSort)
 END_MESSAGE_MAP()
 
 // C清华mfc大作业View 构造/析构
@@ -131,4 +134,25 @@ void C清华mfc大作业View::OnOpenexp()
 	// TODO:  在此添加命令处理程序代码
 	my_Dlg m_Dlg1;
 	m_Dlg1.DoModal();
+}
+
+
+void C清华mfc大作业View::OnOpenSortAndSerach()
+{
+	// TODO:  在此添加命令处理程序代码
+	DBDlg m_DBDlg;
+	if (m_DBDlg.DoModal() == IDOK) {		//IDOK键在此处是排序按钮
+		m_pSet->Close();
+		m_pSet->m_strSort = m_DBDlg.my_string;
+		m_pSet->Open();
+		UpdateData(false);
+	}
+	
+}
+
+
+void C清华mfc大作业View::OnBnClickedSort()
+{
+	// TODO:  在此添加控件通知处理程序代码
+		
 }
