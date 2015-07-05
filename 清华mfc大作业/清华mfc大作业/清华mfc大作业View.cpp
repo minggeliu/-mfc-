@@ -53,6 +53,12 @@ void C清华mfc大作业View::DoDataExchange(CDataExchange* pDX)
 	// DDX_FieldText(pDX, IDC_MYEDITBOX, m_pSet->m_szColumn1, m_pSet);
 	// DDX_FieldCheck(pDX, IDC_MYCHECKBOX, m_pSet->m_bColumn2, m_pSet);
 	// 有关详细信息，请参阅 MSDN 和 ODBC 示例
+	DDX_FieldText(pDX, IDC_EDIT1, m_pSet->m_ID, m_pSet);
+	DDX_FieldText(pDX, IDC_EDIT2, m_pSet->column1, m_pSet);
+	DDX_FieldText(pDX, IDC_EDIT3, m_pSet->column2, m_pSet);
+	DDX_FieldText(pDX, IDC_EDIT4, m_pSet->column3, m_pSet);
+	DDX_FieldText(pDX, IDC_EDIT5, m_pSet->column4, m_pSet);
+	DDX_FieldText(pDX, IDC_EDIT6, m_pSet->column5, m_pSet);
 }
 
 BOOL C清华mfc大作业View::PreCreateWindow(CREATESTRUCT& cs)
