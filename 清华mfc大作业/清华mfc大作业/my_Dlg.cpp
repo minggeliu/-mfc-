@@ -5,6 +5,8 @@
 #include "清华mfc大作业.h"
 #include "my_Dlg.h"
 #include "afxdialogex.h"
+#include <vector>
+#include <math.h>
 
 
 // my_Dlg 对话框
@@ -19,6 +21,10 @@ my_Dlg::my_Dlg(CWnd* pParent /*=NULL*/)
 	, my_degree(45)
 	, my_height(0)
 	, my_color("red")
+	, x0(30)
+	, y0(400)
+	, g(9.8)
+	, mtopixe(400)
 {
 
 }
@@ -49,6 +55,8 @@ BEGIN_MESSAGE_MAP(my_Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_RADIO4, &my_Dlg::OnBnClickedRadio4)
 	ON_BN_CLICKED(IDC_RADIO5, &my_Dlg::OnBnClickedRadio5)
 	ON_BN_CLICKED(IDC_RADIO6, &my_Dlg::OnBnClickedRadio6)
+	ON_BN_CLICKED(IDOK, &my_Dlg::OnBnClickedOk)
+	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 
@@ -69,7 +77,7 @@ BOOL my_Dlg::OnInitDialog()
 
 	UpdateData(false);		//显示抛射角度数
 
-	m_hscrollbar.SetScrollRange(0, 500);
+	m_hscrollbar.SetScrollRange(0, 40);
 	m_hscrollbar.SetScrollPos(0);
 	my_height = 0;
 
@@ -162,7 +170,7 @@ void my_Dlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 			case SB_LINERIGHT:
 				iNowPos = m_hscrollbar.GetScrollPos();
 				iNowPos++;
-				if (iNowPos > 500) iNowPos = 500;
+				if (iNowPos > 40) iNowPos = 40;
 				m_hscrollbar.SetScrollPos(iNowPos);
 				my_height = iNowPos * 1.00 / 100;
 				ShowDetail();break;
@@ -176,7 +184,7 @@ void my_Dlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 			case SB_PAGERIGHT:
 				iNowPos = m_hscrollbar.GetScrollPos();
 				iNowPos += 10;
-				if (iNowPos > 500) iNowPos = 500;
+				if (iNowPos > 40) iNowPos = 40;
 				m_hscrollbar.SetScrollPos(iNowPos);
 				my_height = iNowPos * 1.00 / 100;
 				ShowDetail();break;
@@ -217,4 +225,124 @@ void my_Dlg::OnBnClickedRadio6()
 	// TODO:  在此添加控件通知处理程序代码
 	my_color = "blue";
 	ShowDetail();
+}
+
+
+void my_Dlg::OnBnClickedOk()
+{
+	// TODO:  在此添加控件通知处理程序代码
+	//CDialogEx::OnOK();
+	EXPERIMENT temp;
+	temp.degree = my_degree;
+	temp.height = my_height;
+	temp.speed = my_speed;
+	temp.t = 0;
+	if (my_color == "red") temp.color = EXPERIMENT::red;
+	else if (my_color == "green") temp.color = EXPERIMENT::green;
+	else if (my_color == "blue") temp.color = EXPERIMENT::blue;
+
+	experiment.push_back(temp);
+
+	CRect rect(x0 - 20, 100 - 20, 580 + 20, y0 + 20);		//刷新区域
+
+	double x1, y1;
+	temp.degree = temp.degree / 180 * 3.1415926;
+	while (1) {
+		x1 = (cos(temp.degree)*temp.speed*experiment[experiment.size() - 1].t)*mtopixe;
+		y1 = (sin(temp.degree)*temp.speed*experiment[experiment.size() - 1].t - g*experiment[experiment.size() - 1].t*experiment[experiment.size() - 1].t / 2 + temp.height)*mtopixe;
+		if (x1 < 0 || y1 < 0 || x1 > 550 || y1 > y0-100) { 
+			if (x1 < 0) {
+				experiment[experiment.size() - 1].t -= 0.001;
+				x1 = (cos(temp.degree)*temp.speed*experiment[experiment.size() - 1].t);
+				y1 = (sin(temp.degree)*temp.speed*experiment[experiment.size() - 1].t - g*experiment[experiment.size() - 1].t*experiment[experiment.size() - 1].t / 2 + temp.height);
+				my_edit1.Format(L"出错!球飞到后面去了~\t\tx:%fm\t\ty:%fm\t\tt:%fs", x1, y1, experiment[experiment.size() - 1].t);
+				UpdateData(false);
+				break;
+			}
+			if (x1 > 550) {
+				experiment[experiment.size() - 1].t -= 0.001;
+				x1 = (cos(temp.degree)*temp.speed*experiment[experiment.size() - 1].t);
+				y1 = (sin(temp.degree)*temp.speed*experiment[experiment.size() - 1].t - g*experiment[experiment.size() - 1].t*experiment[experiment.size() - 1].t / 2 + temp.height);
+				my_edit1.Format(L"超过宽度限制!\t\tx:%fm\t\ty:%fm\t\tt:%fs", x1, y1, experiment[experiment.size() - 1].t);
+				UpdateData(false);
+				break;
+			}
+			if(y1 > y0 - 100) {
+				experiment[experiment.size() - 1].t -= 0.001;
+				x1 = (cos(temp.degree)*temp.speed*experiment[experiment.size() - 1].t);
+				y1 = (sin(temp.degree)*temp.speed*experiment[experiment.size() - 1].t - g*experiment[experiment.size() - 1].t*experiment[experiment.size() - 1].t / 2 + temp.height);
+				my_edit1.Format(L"超过高度限制!\t\tx:%fm\t\ty:%fm\t\tt:%fs", x1, y1, experiment[experiment.size() - 1].t);
+				UpdateData(false);
+				break;
+			}
+			if (y1 < 0) {
+				experiment[experiment.size() - 1].t -= 0.001;
+				x1 = (cos(temp.degree)*temp.speed*experiment[experiment.size() - 1].t);
+				y1 = (sin(temp.degree)*temp.speed*experiment[experiment.size() - 1].t - g*experiment[experiment.size() - 1].t*experiment[experiment.size() - 1].t / 2 + temp.height);
+				my_edit1.Format(L"落点:\t\tx:%fm\t\tt:%fs", x1, experiment[experiment.size() - 1].t);
+				UpdateData(false);
+				break; 
+			}
+			break;
+		}
+		else { 
+			InvalidateRect(rect); 
+			experiment[experiment.size() - 1].t += 0.001; 
+		}
+		
+	}
+	
+}
+
+
+void my_Dlg::OnPaint()
+{
+	CPaintDC dc(this); // device context for painting
+					   // TODO:  在此处添加消息处理程序代码
+					   // 不为绘图消息调用 CDialogEx::OnPaint()
+	CPen pen;
+	pen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+	dc.SelectObject(&pen);
+	CBrush brush;
+	dc.MoveTo(x0, y0);
+	dc.LineTo(580, y0);
+	dc.MoveTo(x0, y0);
+	dc.LineTo(x0, 100);
+	dc.MoveTo(x0, y0);
+
+	double t, x, y;
+	
+	for (unsigned int i = 0;i < experiment.size();i++) {
+		t = 0;
+		switch (experiment[i].color)
+		{
+		case EXPERIMENT::red:
+			pen.CreatePen(PS_SOLID, 1, RGB(255, 0, 0));dc.SelectObject(&pen);
+			brush.CreateSolidBrush(RGB(255, 0, 0));dc.SelectObject(&brush);
+			break;
+		case EXPERIMENT::green:
+			pen.CreatePen(PS_SOLID, 1, RGB(0, 255, 0));dc.SelectObject(&pen);
+			brush.CreateSolidBrush(RGB(0, 255, 0));dc.SelectObject(&brush);
+			break;
+		case EXPERIMENT::blue:
+			pen.CreatePen(PS_SOLID, 1, RGB(0, 0, 255));dc.SelectObject(&pen);
+			brush.CreateSolidBrush(RGB(0, 0, 255));dc.SelectObject(&brush);
+			break;
+		default:
+			break;
+		}
+		experiment[i].degree = experiment[i].degree / 180 * 3.1415926;
+		while (t < experiment[i].t) {
+			x = x0 + (cos(experiment[i].degree)*experiment[i].speed*t)*mtopixe;
+			y = y0 - (sin(experiment[i].degree)*experiment[i].speed*t - g*t*t / 2 + experiment[i].height)*mtopixe;
+			dc.LineTo(x, y);
+			t += 0.01;
+		}
+		x = x0 + (cos(experiment[i].degree)*experiment[i].speed*t)*mtopixe;
+		y = y0 - (sin(experiment[i].degree)*experiment[i].speed*t - g*t*t / 2 + experiment[i].height)*mtopixe;
+		dc.LineTo(x, y);
+		dc.Ellipse(x - 10, y - 10, x + 10, y + 10);
+		dc.MoveTo(x0, y0);
+		experiment[i].degree = experiment[i].degree / 3.1415926 * 180;
+	}
 }

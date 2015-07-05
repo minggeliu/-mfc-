@@ -1,12 +1,16 @@
 #pragma once
 #include "afxwin.h"
+#include <vector>
 
-class EXPERMENT {
+class EXPERIMENT {
 public:
 	double speed;
 	double degree;
 	double height;
-	CString color;
+	enum COLOR
+	{
+		red,green,blue
+	}color;
 	double t;
 };
 
@@ -51,4 +55,13 @@ public:
 	afx_msg void OnBnClickedRadio4();
 	afx_msg void OnBnClickedRadio5();
 	afx_msg void OnBnClickedRadio6();
+	afx_msg void OnBnClickedOk();
+
+	std::vector<EXPERIMENT> experiment;
+	afx_msg void OnPaint();
+	int x0;
+	int y0;
+	double g;
+	// 坐标单位米转换到像素的放大倍数
+	int mtopixe;
 };
